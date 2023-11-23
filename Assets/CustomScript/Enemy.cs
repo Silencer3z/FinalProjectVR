@@ -39,7 +39,8 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet")) 
         {
-            enemyHP = -1;
+            Debug.Log("hits");
+            enemyHP--;
             Destroy(other.gameObject);
         }
     }
