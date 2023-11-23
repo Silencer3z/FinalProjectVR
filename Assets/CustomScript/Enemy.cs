@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public int scoreValue = 10;
     public int enemyHP = 100;
     NavMeshAgent agent;
     GameObject target;
@@ -23,6 +24,8 @@ public class Enemy : MonoBehaviour
         if (enemyHP == 0) 
         {
             Destroy(this.gameObject);
+
+            ScoreManager.Instance.AddScore(scoreValue);
         }
         
  
@@ -39,9 +42,15 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet")) 
         {
+            
             Debug.Log("hits");
             enemyHP--;
             Destroy(other.gameObject);
+            
+        }
+        if (other.CompareTag("Player")) 
+        {
+            Destroy(this.gameObject);
         }
     }
 

@@ -4,39 +4,26 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
-    public float spawnInterval = 1f;
-    public float spawnRadius = 20f;
-    public float spawnYPosition = 0.5f;
-    // Start is called before the first frame update
+    public GameObject enemyPrefab;
+    public float spawnTime = 3f;
+    public float playerProximityThreshold = 10f; // Adjust this threshold as needed
+    public Transform[] spawnPoints;
+    private Transform player;
+
     void Start()
     {
-        StartCoroutine(SpawnEnemies()); 
+        player = GameObject.FindGameObjectWithTag("Player").transform; // Assuming player tag is "Player"
+        InvokeRepeating("SpawnEnemy", spawnTime, spawnTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnEnemy()
     {
-        
-    }
-    IEnumerator SpawnEnemies()
-    {
-        while (true)
+        int randomSpawnIndex = Random.Range(0, spawnPoints.Length);
+        Transform spawnPoint = spawnPoints[randomSpawnIndex];
+
+        if (Vector3.Distance(player.position, spawnPoint.position) > playerProximityThreshold)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Ground")))
-                 {
-                Vector3 spawnPoint = hit.point; // Get the ground position
-                spawnPoint.y = spawnYPosition; // Set the Y position
-
-                Instantiate(EnemyPrefab, spawnPoint, Quaternion.identity);
-                yield return new WaitForSeconds(spawnInterval);
-            }
-            Ray ray = Camera.main.ScreenPointToRay(transform.position);
-
-            
-        
-         
+            Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         }
     }
 
