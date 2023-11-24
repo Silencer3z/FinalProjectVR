@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             playerHP--;
+            Destroy(other.gameObject);
         }
     }
 }

@@ -48,10 +48,6 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             
         }
-        if (other.CompareTag("Player")) 
-        {
-            Destroy(this.gameObject);
-        }
     }
 
 

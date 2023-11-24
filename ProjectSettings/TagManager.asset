@@ -7,6 +7,8 @@ TagManager:
   - Bullet
   - Ground
   - Enemy
+  - Right Hand
+  - Left Hand
   layers:
   - Default
   - TransparentFX
