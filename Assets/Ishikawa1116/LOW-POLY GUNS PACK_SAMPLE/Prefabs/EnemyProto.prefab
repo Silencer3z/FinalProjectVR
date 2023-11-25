@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 7427727585800755379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.536, y: 0.16, z: 3.72}
-  m_LocalScale: {x: 0.41008478, y: 0.41008478, z: 0.41008478}
+  m_LocalPosition: {x: 0, y: 1.46, z: 2.44}
+  m_LocalScale: {x: 1.7248, y: 1.7248, z: 1.7248}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f122cc8e4056e3f4f8348cb88238d38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreValue: 10
   enemyHP: 2
 --- !u!136 &3175066833989644068
 CapsuleCollider:
@@ -115,7 +116,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -149,7 +150,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!195 &5944297263077760313
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
