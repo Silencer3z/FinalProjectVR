@@ -8,12 +8,16 @@ public class GameController : MonoBehaviour
 {
 
     public float timeInSeconds = 60f; // Set the time limit in seconds
-    public TextMeshProUGUI timeText; // Reference to the UI text to display time
-
+    public TextMeshProUGUI timeText;// Reference to the UI text to display time
+    public GameObject fixUI;
+    public GameObject menuUI;
+    public GameObject winUI;
     private float currentTime;
 
     void Start()
     {
+        Time.timeScale = 1f;
+
         currentTime = timeInSeconds;
     }
 
@@ -29,7 +33,11 @@ public class GameController : MonoBehaviour
         {
             // Time's up, do something here like end the game or take appropriate action
             Debug.Log("Time's up!");
+            fixUI.SetActive(false);
+            menuUI.SetActive(true);
+            winUI.SetActive(true);
             Time.timeScale = 0f;
+
         }
     }
 

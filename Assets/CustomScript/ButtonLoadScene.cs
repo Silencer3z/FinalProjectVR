@@ -18,4 +18,9 @@ public class ButtonLoadScene : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
