@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public int scoreValue = 10;
     public int enemyHP = 100;
+    public int damageAmount;
     NavMeshAgent agent;
     GameObject target;
     // Start is called before the first frame update

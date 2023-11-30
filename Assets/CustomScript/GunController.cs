@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class GunController : MonoBehaviour
@@ -12,6 +14,12 @@ public class GunController : MonoBehaviour
     public int maxAmmo = 0;
 
     
+
+    public TextMeshProUGUI ammoText;
+
+
+    public AudioSource gunAudioSource;
+
     public enum FiringMode
     {
         Single,
@@ -30,6 +38,7 @@ public class GunController : MonoBehaviour
 
     void Start()
     {
+        gunAudioSource = GetComponent<AudioSource>();
         XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.activated.AddListener(Shoot);
 
@@ -40,6 +49,8 @@ public class GunController : MonoBehaviour
 
     void Update()
     {
+        ammoText.text = currentAmmo.ToString("");
+
         // Check for firing mode switch with cooldown
         if (Time.time > nextModeSwitch)
         {
@@ -58,10 +69,17 @@ public class GunController : MonoBehaviour
    
         }
        
+       
     }
 
     void Shoot(ActivateEventArgs arg)
     {
+        PlayGunSound();
+        if (currentAmmo <= 0)
+        {
+            Reload();
+            return;
+        }
         if (Time.time > nextFire && currentAmmo > 0)
         {
             nextFire = Time.time + fireRate;
@@ -82,6 +100,14 @@ public class GunController : MonoBehaviour
         }
        
     }
+    void Shoot(DeactivateEventArgs args)
+    {
+        if (currentFiringMode == FiringMode.Automatic)
+        {
+            CancelInvoke("ShootBullet"); // Stop continuous shooting when trigger is released
+        }
+    }
+
 
     void SwitchFiringMode(FiringMode newMode)
     {
@@ -94,6 +120,7 @@ public class GunController : MonoBehaviour
 
     void ShootBullet()
     {
+      
         GameObject bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
@@ -112,6 +139,26 @@ public class GunController : MonoBehaviour
         {
             ShootBullet();
             yield return new WaitForSeconds(fireRate);
+        }
+    }
+
+    void Reload()
+    {
+        // Check if the current ammo is less than the maximum ammo and if there is available ammo to reload
+        int ammoNeeded = maxAmmo;
+        if (ammoNeeded > 0)
+        {
+            int ammoToReload = Mathf.Min(ammoNeeded); // Calculate how much ammo to reload
+            currentAmmo += ammoToReload; // Add ammo to the gun
+            // Subtract ammo from available pool
+        }
+    }
+
+    void PlayGunSound()
+    {
+        if (gunAudioSource != null && gunAudioSource.clip != null)
+        {
+            gunAudioSource.PlayOneShot(gunAudioSource.clip); // Play the audio clip
         }
     }
 }

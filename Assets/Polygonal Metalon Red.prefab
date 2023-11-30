@@ -419,7 +419,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &3950951211777353578
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -495,8 +495,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f122cc8e4056e3f4f8348cb88238d38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreValue: 10
+  scoreValue: 500
   enemyHP: 2
+  damageAmount: 2
 --- !u!195 &784459974472685286
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -516,7 +517,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &1900308833032876904
