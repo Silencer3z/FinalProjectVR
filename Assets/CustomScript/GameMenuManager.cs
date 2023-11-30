@@ -14,7 +14,12 @@ public class GameMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeStop = 1;
+       
+        if (timeStop == 0)
+        {
+            timeStop = 1;
+        }
+       
     }
 
     // Update is called once per frame

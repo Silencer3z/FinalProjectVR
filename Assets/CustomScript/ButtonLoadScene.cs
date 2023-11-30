@@ -9,6 +9,7 @@ public class ButtonLoadScene : MonoBehaviour
     public AudioSource soundEffect; // Reference to AudioSource component for sound effects
     public void MainMenu()
     {
+        Time.timeScale = 1;
         PlaySceneTransitionSound();
         SceneManager.LoadScene("MainMenu");
     }

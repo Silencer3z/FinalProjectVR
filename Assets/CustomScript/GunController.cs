@@ -52,22 +52,7 @@ public class GunController : MonoBehaviour
         ammoText.text = currentAmmo.ToString("");
 
         // Check for firing mode switch with cooldown
-        if (Time.time > nextModeSwitch)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                SwitchFiringMode(FiringMode.Single);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                SwitchFiringMode(FiringMode.Burst);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                SwitchFiringMode(FiringMode.Automatic);
-            }
-   
-        }
+       
        
        
     }
