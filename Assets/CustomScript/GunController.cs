@@ -11,6 +11,7 @@ public class GunController : MonoBehaviour
     public int currentAmmo;
     public int maxAmmo = 0;
 
+    
     public enum FiringMode
     {
         Single,
@@ -33,6 +34,8 @@ public class GunController : MonoBehaviour
         grabInteractable.activated.AddListener(Shoot);
 
         currentAmmo = maxAmmo;
+
+      
     }
 
     void Update()

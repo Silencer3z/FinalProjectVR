@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class ButtonLoadScene : MonoBehaviour
 {
+    
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-
-
-
-
     }
 
     public void RestartGame()
